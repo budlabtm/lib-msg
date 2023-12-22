@@ -30,9 +30,10 @@ Record::Record(const std::string &topic_, const std::string &key_,
 }
 
 std::string Record::ToString() {
-  std::string record = topic;
-  if (!key.empty()) record += "|" + key;
-  record += "|" + message;
+  std::string record = topic + "|";
+
+  if (!key.empty()) record += key + "|";
+  record += message;
   if (time != 0) record += "|" + std::to_string(time);
 
   return record;
