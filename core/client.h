@@ -21,10 +21,10 @@ struct Credentials {
 };
 
 class IClient {
- private:
+protected:
   std::unordered_multiset<std::string> subscribed_;
 
- public:
+public:
   virtual ~IClient() {}
 
   virtual void Configure(const Credentials &c) = 0;
@@ -33,12 +33,12 @@ class IClient {
   virtual void Unsubscribe(const std::string &topic) = 0;
   virtual bool IsConnected() = 0;
 
- signals:  // Qt only
+signals: // Qt only
   virtual void Consumed(Record record){};
   virtual void Connected(){};
   virtual void Disconnected(){};
 };
 
-}  // namespace budlab::lib::msg
+} // namespace budlab::lib::msg
 
-#endif  // LIB_MSG_CLIENT_H
+#endif // LIB_MSG_CLIENT_H

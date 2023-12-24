@@ -21,6 +21,6 @@ struct Record {
   static Record FromString(const std::string &str);
 };
 
-}  // namespace budlab::lib::msg
+} // namespace budlab::lib::msg
 
-#endif  // LIB_MSG_RECORD_H
+#endif // LIB_MSG_RECORD_H

@@ -11,11 +11,11 @@
 namespace budlab::lib::msg {
 
 class IProducer {
- protected:
+protected:
   std::shared_ptr<IClient> client_;
   std::string (*parser_)(Record) = nullptr;
 
- public:
+public:
   virtual ~IProducer() {}
 
   virtual bool Send(const Record &record) = 0;
@@ -23,6 +23,6 @@ class IProducer {
   void SetParser(std::string (*parser)(Record)) { parser_ = parser; }
 };
 
-}  // namespace budlab::lib::msg
+} // namespace budlab::lib::msg
 
-#endif  // LIB_MSG_PRODUCER_H
+#endif // LIB_MSG_PRODUCER_H
