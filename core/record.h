@@ -5,6 +5,11 @@
 
 namespace budlab::lib::msg {
 
+struct ParseResult {
+  std::string topic;
+  std::string payload;
+};
+
 struct Record {
   std::string topic;
   std::string key;
@@ -16,11 +21,8 @@ struct Record {
 
   Record(const std::string &topic_, const std::string &key_,
          const std::string &message_, const unsigned time_ = 0);
-
-  std::string ToString();
-  static Record FromString(const std::string &str);
 };
 
-} // namespace budlab::lib::msg
+}  // namespace budlab::lib::msg
 
-#endif // LIB_MSG_RECORD_H
+#endif  // LIB_MSG_RECORD_H

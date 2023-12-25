@@ -5,6 +5,7 @@
 #include <unordered_set>
 
 #include "QtCore/QObject"
+#include "parser.h"
 #include "record.h"
 
 namespace budlab::lib::msg {
@@ -24,24 +25,32 @@ struct Credentials {
 };
 
 class IClient {
-protected:
+ protected:
   std::unordered_multiset<std::string> subscribed_;
+  std::shared_ptr<IParser> parser_;
 
-public:
+ public:
+  IClient(IParser *parser = nullptr) {
+    if (parser == nullptr)
+      parser_.reset(new DefaultParser());
+    else
+      parser_.reset(parser);
+  }
+
   virtual ~IClient() {}
 
   virtual void Configure(const Credentials &c) = 0;
-  virtual void Send(const std::string &topic, const std::string payload) = 0;
+  virtual void Send(const Record &record) = 0;
   virtual void Subscribe(const std::string &topic) = 0;
   virtual void Unsubscribe(const std::string &topic) = 0;
   virtual bool IsConnected() = 0;
 
-signals: // Qt only
-  virtual void Consumed(const std::string &topic, const std::string payload){};
+ signals:  // Qt only
+  virtual void Consumed(Record record){};
   virtual void Connected(){};
   virtual void Disconnected(){};
 };
 
-} // namespace budlab::lib::msg
+}  // namespace budlab::lib::msg
 
-#endif // LIB_MSG_CLIENT_H
+#endif  // LIB_MSG_CLIENT_H

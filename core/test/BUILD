@@ -1,8 +1,8 @@
 cc_test(
-  name = "core-test",
-  srcs = ["core-test.cc"],
-  deps = [
-    "//core",
-    "@gtest//:gtest"
-  ]
+    name = "test",
+    srcs = ["default-parser-test.cc"],
+    deps = [
+        "//core",
+        "@gtest",
+    ],
 )

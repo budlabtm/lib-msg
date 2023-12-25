@@ -11,28 +11,28 @@
 
 namespace budlab::lib::msg {
 
-class IConsumer {
-protected:
+class Consumer : public QObject {
+  Q_OBJECT
+
+ private:
   std::shared_ptr<IClient> client_;
   std::unordered_map<std::string, std::string> subscribed_;
-  Record (*parser_)(std::string &) = nullptr;
 
-public:
-  virtual ~IConsumer() {}
+ public:
+  Consumer(IClient *client);
+  virtual ~Consumer() {}
 
-  virtual void Subscribe(const std::string &topic) = 0;
-  virtual void Subscribe(const std::string &topic, const std::string &key) = 0;
-  virtual void Unsubscribe(const std::string &topic) = 0;
+  void Subscribe(const std::string &topic);
+  void Subscribe(const std::string &topic, const std::string &key);
+  void Unsubscribe(const std::string &topic);
 
-  void SetParser(Record (*parser)(std::string &)) { parser_ = parser; }
+ signals:
+  void Consumed(Record record);
 
-signals: // Qt only
-  virtual void Consumed(Record record) = 0;
-
-private slots: // Qt only
-  virtual void OnConsumed(Record record) = 0;
+ private slots:
+  void OnConsumed(Record record);
 };
 
-} // namespace budlab::lib::msg
+}  // namespace budlab::lib::msg
 
-#endif // LIB_MSG_CONSUMER_H
+#endif  // LIB_MSG_CONSUMER_H

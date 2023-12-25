@@ -1,14 +1,16 @@
+"Messaging library"
+
 module(
-  name = "msg",
-  version = "1.0.0",
-  compatibility_level = 1
+    name = "msg",
+    version = "1.0.0",
+    compatibility_level = 1,
 )
 
 bazel_dep(name = "googletest", version = "1.14.0", repo_name = "gtest")
-bazel_dep(name = "hedron_compile_commands", dev_dependency = True, repo_name = "sync")
 
+bazel_dep(name = "hedron_compile_commands", dev_dependency = True, repo_name = "sync")
 git_override(
     module_name = "hedron_compile_commands",
-    remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
     commit = "daae6f40adfa5fdb7c89684cbe4d88b691c63b2d",
+    remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
 )
