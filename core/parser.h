@@ -2,26 +2,19 @@
 #define LIB_MSG_PARSER_H
 
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 #include "record.h"
 
-namespace budlab::lib::msg {
+namespace budlab::lib {
 
-std::vector<std::string> split(const std::string &str, char sep) {
-  std::string s = str;
-  std::vector<std::string> r;
+std::vector<std::string> split(const std::string &str, char sep = '|');
+bool isnumber(const std::string &str);
+std::unordered_map<std::string, std::string> map(const std::string &srecord,
+                                                 char os = '|', char is = ':');
 
-  for (decltype(s.size()) i = s.find(sep); i != std::string::npos;
-       i = s.find(sep)) {
-    std::string sub = s.substr(0, i);
-    if (!sub.empty()) r.push_back(sub);
-    s.erase(0, i + 1);
-  }
-
-  if (!s.empty()) r.push_back(s);
-  return r;
-}
+namespace msg {
 
 class IParser {
  public:
@@ -35,6 +28,8 @@ class DefaultParser : public IParser {
   std::string ToString(const Record &record);
 };
 
-}  // namespace budlab::lib::msg
+}  // namespace msg
+
+}  // namespace budlab::lib
 
 #endif  // LIB_MSG_RECORD_H

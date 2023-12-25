@@ -1,12 +1,14 @@
+#include <gtest/gtest.h>
+
+#include <stdexcept>
+
 #include "core/parser.h"
 #include "core/record.h"
-#include "gtest/gtest.h"
-#include <stdexcept>
 
 using namespace budlab::lib::msg;
 
 class DefaultParserTest : public testing::Test {
-protected:
+ protected:
   DefaultParser parser;
 };
 

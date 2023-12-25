@@ -1,9 +1,10 @@
 #ifndef LIB_MSG_VCAS_CLIENT_H
 #define LIB_MSG_VCAS_CLIENT_H
 
-#include "QtCore/QObject"
-#include "QtCore/QTimer"
-#include "QtNetwork/QTcpSocket"
+#include <QtCore/QObject>
+#include <QtCore/QTimer>
+#include <QtNetwork/QTcpSocket>
+
 #include "core/client.h"
 
 namespace budlab::lib::msg {

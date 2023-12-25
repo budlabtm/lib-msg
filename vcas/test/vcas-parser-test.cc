@@ -1,13 +1,13 @@
 #include "vcas/vcas-parser.h"
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 using namespace budlab::lib::msg;
 
 class VcasParserTest : public testing::Test {
  protected:
   VcasParser parser;
-}
+};
 
 TEST_F(VcasParserTest, ToString) {
   EXPECT_EQ("name:topic|time:24.12.2023 16_30_30.191|val:payload",

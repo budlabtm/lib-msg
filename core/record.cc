@@ -16,13 +16,13 @@ static void validate(Record *record) {
 }
 
 Record::Record(const std::string &topic_, const std::string &message_,
-               const unsigned time_)
+               const unsigned long time_)
     : topic(topic_), message(message_), time(time_) {
   validate(this);
 }
 
 Record::Record(const std::string &topic_, const std::string &key_,
-               const std::string &message_, const unsigned time_)
+               const std::string &message_, const unsigned long time_)
     : topic(topic_), key(key_), message(message_), time(time_) {
   validate(this);
 }

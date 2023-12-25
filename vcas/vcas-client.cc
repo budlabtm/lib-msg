@@ -58,8 +58,7 @@ bool VcasClient::IsConnected() { return socket_->isValid(); }
 void VcasClient::OnReadyRead() {
   while (socket_->canReadLine()) {
     std::string line = tr(socket_->readLine()).remove('\n').toStdString();
-    std::cout << line << std::endl;
-    // emit Consumed(parser_->FromString(line));
+    emit Consumed(parser_->FromString(line));
   }
 }
 

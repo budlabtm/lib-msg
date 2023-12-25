@@ -1,6 +1,7 @@
 #include "vcas/vcas-client.h"
 
-#include "QtCore/QCoreApplication"
+#include <QtCore/QCoreApplication>
+
 #include "core/consumer.h"
 
 using namespace budlab::lib::msg;

@@ -1,11 +1,11 @@
 #ifndef LIB_MSG_CONSUMER_H
 #define LIB_MSG_CONSUMER_H
 
+#include <QtCore/QObject>
 #include <memory>
 #include <string>
 #include <unordered_map>
 
-#include "QtCore/QObject"
 #include "client.h"
 #include "record.h"
 

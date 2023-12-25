@@ -1,10 +1,10 @@
 #ifndef LIB_MSG_CLIENT_H
 #define LIB_MSG_CLIENT_H
 
+#include <QtCore/QObject>
 #include <string>
 #include <unordered_set>
 
-#include "QtCore/QObject"
 #include "parser.h"
 #include "record.h"
 
