@@ -64,10 +64,9 @@ Record DefaultParser::FromString(const std::string &srecord) {
       if (isnumber(tokens[3]))
         return Record(tokens[0], tokens[1], tokens[2], std::stoul(tokens[3]));
     default:
-      throw std::runtime_error(
-          "Parsing error: string must to follow "
-          "\"string|[string|]string[|unsigned]\" pattern, but \"" +
-          srecord + "\" given.");
+      throw std::runtime_error("Format error - \"" + kFormat +
+                               "\" expected, but \"" + srecord +
+                               "\" were given");
   }
 }
 

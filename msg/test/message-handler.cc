@@ -11,8 +11,8 @@ MessageHandler::MessageHandler(Consumer *consumer) : consumer_(consumer) {
 }
 
 void MessageHandler::OnConsumed(Record record) {
-  cout << "Income:\n\tFrom: \"" + record.topic +
-              "\"\n\tMessage: " + record.message +
+  cout << "Income:\n\tFrom: " + record.topic + "\n\tKey: " + record.key +
+              "\n\tMessage: " + record.message +
               "\n\tAt: " + std::to_string(record.time)
        << endl;
 }

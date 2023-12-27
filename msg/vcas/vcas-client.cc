@@ -1,5 +1,7 @@
 #include "msg/vcas/vcas-client.h"
 
+#include <glog/logging.h>
+
 #include <iostream>
 
 using namespace budlab::msg;
@@ -58,7 +60,11 @@ bool VcasClient::IsConnected() { return socket_->isValid(); }
 void VcasClient::OnReadyRead() {
   while (socket_->canReadLine()) {
     std::string line = tr(socket_->readLine()).remove('\n').toStdString();
-    emit Consumed(parser_->FromString(line));
+    try {
+      emit Consumed(parser_->FromString(line));
+    } catch (const std::runtime_error &err) {
+      LOG(ERROR) << "LIB_MSG_VCAS_CLIENT: " << err.what();
+    }
   }
 }
 

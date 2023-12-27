@@ -8,6 +8,7 @@ qt_cc_library(
     visibility = ["//visibility:public"],
     deps = [
         "//msg",
+        "@glog",
         "@mqtt//:paho-mqtt-cpp-linux",
     ],
 )

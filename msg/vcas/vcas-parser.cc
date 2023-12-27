@@ -8,19 +8,13 @@ using std::runtime_error;
 using std::string;
 using std::unordered_map;
 
-#define ERROR_MESSAGE(srecord)                                 \
-  "Parsing error: record must follow "                         \
-  "\"[...|]name:topic|time:time|val:message[|...]\", but \"" + \
-      srecord + "\" were given."
-
-#define TIME_FORMAT "dd.MM.yyyy HH_mm_ss.zzz"
-
 Record VcasParser::FromString(const string &srecord) {
   unordered_map<string, string> tokens = map(srecord, '|', ':');
 
   if (tokens.size() < 3 || !tokens.count("name") || !tokens.count("time") ||
       !tokens.count("val"))
-    throw runtime_error(ERROR_MESSAGE(srecord));
+    throw std::runtime_error("Format error - \"" + kFormat +
+                             "\" expected, but \"" + srecord + "\" were given");
 
   return Record(
       tokens["name"], tokens["val"],

@@ -1,5 +1,7 @@
 #include "mqtt-client.h"
 
+#include <glog/logging.h>
+
 #include <iostream>
 
 using namespace budlab::msg;
@@ -52,5 +54,9 @@ void MqttClient::connection_lost(const std::string &cause) {
 }
 
 void MqttClient::message_arrived(mqtt::const_message_ptr msg) {
-  emit Consumed(parser_->FromString(msg->get_payload_str()));
+  try {
+    emit Consumed(parser_->FromString(msg->get_payload_str()));
+  } catch (const std::runtime_error &err) {
+    LOG(ERROR) << "LIB_MSG_MQTT_CLIENT: " << err.what();
+  }
 }

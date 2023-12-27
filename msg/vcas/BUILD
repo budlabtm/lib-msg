@@ -8,6 +8,7 @@ qt_cc_library(
     visibility = ["//visibility:public"],
     deps = [
         "//msg",
+        "@glog",
         "@rules_qt//:qt_network",
     ],
 )
