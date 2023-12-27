@@ -1,8 +1,8 @@
-#include "vcas-client.h"
+#include "msg/vcas/vcas-client.h"
 
 #include <iostream>
 
-using namespace budlab::lib::msg;
+using namespace budlab::msg;
 
 void VcasClient::Send(const std::string &record) {
   QTextStream out(socket_);
@@ -22,7 +22,7 @@ VcasClient::VcasClient(IParser *parser) : IClient(parser) {
 }
 
 VcasClient::~VcasClient() {
-  if (socket_->isValid()) socket_->disconnectFromHost();
+  if (IsConnected()) socket_->disconnectFromHost();
 
   delete timer_;
   delete socket_;
@@ -36,20 +36,20 @@ void VcasClient::Configure(const Credentials &c) {
 }
 
 void VcasClient::Send(const Record &record) {
-  if (!socket_->isValid()) return;
+  if (!IsConnected()) return;
   Send(parser_->ToString(record));
 }
 
 void VcasClient::Subscribe(const std::string &topic) {
   subscribed_.insert(topic);
 
-  if (socket_->isValid()) Send("name:" + topic + "|method:subscr");
+  if (IsConnected()) Send("name:" + topic + "|method:subscr");
 }
 
 void VcasClient::Unsubscribe(const std::string &topic) {
   subscribed_.extract(topic);
 
-  if (subscribed_.count(topic) == 0)
+  if (subscribed_.count(topic) == 0 && IsConnected())
     Send("name:" + topic + "|method:release\n");
 }
 

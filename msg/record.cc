@@ -1,9 +1,9 @@
-#include "record.h"
+#include "msg/record.h"
 
 #include <stdexcept>
 #include <string>
 
-using namespace budlab::lib::msg;
+using namespace budlab::msg;
 
 static void validate(Record *record) {
   if (record->topic.empty() || record->message.empty())

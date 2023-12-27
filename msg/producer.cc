@@ -1,6 +1,6 @@
-#include "producer.h"
+#include "msg/producer.h"
 
-using namespace budlab::lib::msg;
+using namespace budlab::msg;
 
 Producer::Producer(IClient *client) { client_.reset(client); }
 

@@ -1,1 +1,2 @@
 common --cxxopt=-std=c++17
+common --registry=https://raw.githubusercontent.com/budlabtm/bazel-registry/internal/

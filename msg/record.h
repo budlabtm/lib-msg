@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace budlab::lib::msg {
+namespace budlab::msg {
 
 struct ParseResult {
   std::string topic;
@@ -23,6 +23,6 @@ struct Record {
          const std::string &message_, const unsigned long time_ = 0);
 };
 
-}  // namespace budlab::lib::msg
+}  // namespace budlab::msg
 
 #endif  // LIB_MSG_RECORD_H

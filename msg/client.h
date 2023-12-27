@@ -5,10 +5,10 @@
 #include <string>
 #include <unordered_set>
 
-#include "parser.h"
-#include "record.h"
+#include "msg/parser.h"
+#include "msg/record.h"
 
-namespace budlab::lib::msg {
+namespace budlab::msg {
 
 struct Credentials {
   std::string host;
@@ -45,12 +45,12 @@ class IClient {
   virtual void Unsubscribe(const std::string &topic) = 0;
   virtual bool IsConnected() = 0;
 
- signals:  // Qt only
-  virtual void Consumed(Record record){};
-  virtual void Connected(){};
-  virtual void Disconnected(){};
+  // Signals
+  virtual void Consumed(Record record) = 0;
+  virtual void Connected() = 0;
+  virtual void Disconnected() = 0;
 };
 
-}  // namespace budlab::lib::msg
+}  // namespace budlab::msg
 
 #endif  // LIB_MSG_CLIENT_H

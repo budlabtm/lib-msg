@@ -1,9 +1,9 @@
 #ifndef LIB_MSG_VCAS_PARSER_H
 #define LIB_MSG_VCAS_PARSER_H
 
-#include "core/parser.h"
+#include "msg/parser.h"
 
-namespace budlab::lib::msg {
+namespace budlab::msg {
 
 class VcasParser : public IParser {
  public:
@@ -11,6 +11,6 @@ class VcasParser : public IParser {
   std::string ToString(const Record &record);
 };
 
-}  // namespace budlab::lib::msg
+}  // namespace budlab::msg
 
 #endif  // LIB_MSG_VCAS_PARSER_H

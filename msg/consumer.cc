@@ -1,6 +1,6 @@
-#include "consumer.h"
+#include "msg/consumer.h"
 
-using namespace budlab::lib::msg;
+using namespace budlab::msg;
 
 Consumer::Consumer(IClient *client) {
   client_.reset(client);
@@ -23,7 +23,7 @@ void Consumer::Unsubscribe(const std::string &topic) {
   }
 }
 
-void Consumer::Consumed(Record record) {
+void Consumer::OnConsumed(Record record) {
   if (subscribed_.count(record.topic) != 0 &&
       (subscribed_.at(record.topic).empty() ||
        subscribed_.at(record.topic) == record.key))

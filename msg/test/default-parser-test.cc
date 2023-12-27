@@ -2,10 +2,10 @@
 
 #include <stdexcept>
 
-#include "core/parser.h"
-#include "core/record.h"
+#include "msg/parser.h"
+#include "msg/record.h"
 
-using namespace budlab::lib::msg;
+using namespace budlab::msg;
 
 class DefaultParserTest : public testing::Test {
  protected:

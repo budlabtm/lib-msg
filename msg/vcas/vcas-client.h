@@ -5,9 +5,9 @@
 #include <QtCore/QTimer>
 #include <QtNetwork/QTcpSocket>
 
-#include "core/client.h"
+#include "msg/client.h"
 
-namespace budlab::lib::msg {
+namespace budlab::msg {
 
 class VcasClient : public QObject, public IClient {
   Q_OBJECT
@@ -43,6 +43,6 @@ class VcasClient : public QObject, public IClient {
   void Disconnected() override;
 };
 
-}  // namespace budlab::lib::msg
+}  // namespace budlab::msg
 
 #endif  // LIB_MSG_VCAS_CLIENT_H

@@ -1,9 +1,9 @@
-#include "vcas-parser.h"
+#include "msg/vcas/vcas-parser.h"
 
 #include <QtCore/QDateTime>
 #include <unordered_map>
 
-using namespace budlab::lib::msg;
+using namespace budlab::msg;
 using std::runtime_error;
 using std::string;
 using std::unordered_map;

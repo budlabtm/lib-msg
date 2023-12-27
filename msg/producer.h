@@ -4,11 +4,10 @@
 #include <memory>
 #include <string>
 
-#include "client.h"
-#include "core/record.h"
-#include "record.h"
+#include "msg/client.h"
+#include "msg/record.h"
 
-namespace budlab::lib::msg {
+namespace budlab::msg {
 
 class Producer {
  private:
@@ -21,6 +20,6 @@ class Producer {
   bool Send(const Record &record);
 };
 
-}  // namespace budlab::lib::msg
+}  // namespace budlab::msg
 
 #endif  // LIB_MSG_PRODUCER_H

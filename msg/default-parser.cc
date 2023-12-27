@@ -1,13 +1,15 @@
 #include <stdexcept>
 #include <vector>
 
-#include "parser.h"
+#include "msg/parser.h"
+
+using namespace budlab::msg;
 
 using std::string;
 using std::unordered_map;
 using std::vector;
 
-vector<string> budlab::lib::split(const string &str, char sep) {
+vector<string> budlab::split(const string &str, char sep) {
   string local = str;
   vector<string> r;
 
@@ -22,7 +24,7 @@ vector<string> budlab::lib::split(const string &str, char sep) {
   return r;
 }
 
-bool budlab::lib::isnumber(const std::string &str) {
+bool budlab::isnumber(const std::string &str) {
   bool r = true;
 
   for (auto &c : str)
@@ -34,8 +36,8 @@ bool budlab::lib::isnumber(const std::string &str) {
   return r;
 }
 
-unordered_map<string, string> budlab::lib::map(const string &srecord, char os,
-                                               char is) {
+unordered_map<string, string> budlab::map(const string &srecord, char os,
+                                          char is) {
   unordered_map<string, string> r;
   auto parts = split(srecord, os);
 
@@ -46,8 +48,6 @@ unordered_map<string, string> budlab::lib::map(const string &srecord, char os,
 
   return r;
 }
-
-using namespace budlab::lib::msg;
 
 Record DefaultParser::FromString(const std::string &srecord) {
   std::vector<std::string> tokens = split(srecord, '|');

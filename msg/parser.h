@@ -5,9 +5,9 @@
 #include <unordered_map>
 #include <vector>
 
-#include "record.h"
+#include "msg/record.h"
 
-namespace budlab::lib {
+namespace budlab {
 
 std::vector<std::string> split(const std::string &str, char sep = '|');
 bool isnumber(const std::string &str);
@@ -30,6 +30,6 @@ class DefaultParser : public IParser {
 
 }  // namespace msg
 
-}  // namespace budlab::lib
+}  // namespace budlab
 
 #endif  // LIB_MSG_RECORD_H

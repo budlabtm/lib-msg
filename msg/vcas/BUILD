@@ -7,7 +7,7 @@ qt_cc_library(
     linkstatic = True,
     visibility = ["//visibility:public"],
     deps = [
-        "//core",
+        "//msg",
         "@rules_qt//:qt_network",
     ],
 )

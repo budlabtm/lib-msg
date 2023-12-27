@@ -6,10 +6,10 @@
 #include <string>
 #include <unordered_map>
 
-#include "client.h"
-#include "record.h"
+#include "msg/client.h"
+#include "msg/record.h"
 
-namespace budlab::lib::msg {
+namespace budlab::msg {
 
 class Consumer : public QObject {
   Q_OBJECT
@@ -33,6 +33,6 @@ class Consumer : public QObject {
   void OnConsumed(Record record);
 };
 
-}  // namespace budlab::lib::msg
+}  // namespace budlab::msg
 
 #endif  // LIB_MSG_CONSUMER_H
