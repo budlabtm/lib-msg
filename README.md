@@ -7,8 +7,7 @@ The module serves to communicate with several brokers and transmits messages in 
 
 ## Installation
 
-You can add a module to your Bazel project using Bzlmod dependency system. In order to do this, add the following line in your MODULE.
-bazel file:
+You can add a module to your Bazel project using Bzlmod dependency system. In order to do this, add the following line in your MODULE.bazel file:
 
 ``` python
 bazel_dep(name = "msg", version = "1.0.0", repo_name = "msg")
