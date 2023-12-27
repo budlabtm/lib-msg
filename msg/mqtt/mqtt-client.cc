@@ -42,11 +42,15 @@ bool MqttClient::IsConnected() {
 }
 
 void MqttClient::connected(const string &cause) {
+  LOG(INFO) << "LIB_MSG_MQTT_CLIENT: Connected, " + cause;
   for (auto &topic : subscribed_) client_->subscribe(topic, 1);
   emit Connected();
 }
 
-void MqttClient::connection_lost(const string &cause) { emit Disconnected(); }
+void MqttClient::connection_lost(const string &cause) {
+  LOG(INFO) << "LIB_MSG_MQTT_CLIENT: Disconnected, " + cause;
+  emit Disconnected();
+}
 
 void MqttClient::message_arrived(mqtt::const_message_ptr msg) {
   try {

@@ -70,12 +70,14 @@ void VcasClient::OnReadyRead() {
 }
 
 void VcasClient::OnConnected() {
+  LOG(INFO) << "LIB_MSG_VCAS_CLIENT: Connected";
   timer_->stop();
   for (auto &t : subscribed_) Send("name:" + t + "|method:subscr\n");
   emit Connected();
 }
 
 void VcasClient::OnDisconnected() {
+  LOG(INFO) << "LIB_MSG_VCAS_CLIENT: Disconnected";
   timer_->start();
   emit Disconnected();
 }
