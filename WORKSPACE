@@ -11,4 +11,5 @@ load("@rules_qt//:fetch_qt.bzl", "fetch_qt6")
 load("@rules_qt//tools:qt_toolchain.bzl", "register_qt_toolchains")
 
 fetch_qt6()
+
 register_qt_toolchains()
