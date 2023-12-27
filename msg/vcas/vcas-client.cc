@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+#include "msg/vcas/vcas-parser.h"
+
 using namespace budlab::msg;
 
 void VcasClient::Send(const std::string &record) {
@@ -12,6 +14,8 @@ void VcasClient::Send(const std::string &record) {
 }
 
 VcasClient::VcasClient(IParser *parser) : IClient(parser) {
+  if (parser == nullptr) parser_.reset(new VcasParser());
+
   timer_ = new QTimer(this);
   socket_ = new QTcpSocket(this);
 
