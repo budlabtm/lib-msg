@@ -62,13 +62,13 @@ int main(int argc, char **argv) {
 
 ## Logging
 
-Module using Google Logging C++ library (see https://github.com/google/glog) as logging system. To enable it in your project, add the folloing include:
+The module uses Google Logging C++ library (see https://github.com/google/glog) as a logging system. To include it in your project, add the folloing:
 
 ``` c++
 #include <glog/logging.h>
 ```
 
-and line at the start of your `main()`:
+and the following line at the start of your `main()`:
 
 ``` c++
 google::InitGoogleLogging(argv[0]);
