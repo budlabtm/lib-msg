@@ -1,25 +1,75 @@
 ### budlab/lib
 # Messaging
 
-Library helps communicate with message broker in standard way. Design inspired by Apache Kafka - for more information, see: https://kafka.apache.org/36/javadoc/index.html?org/apache/kafka/
+The module serves to communicate with several brokers and transmits messages in a simple and standardized way. Design inspired by Apache Kafka client library - for more information see: https://kafka.apache.org/36/javadoc/index.html?org/apache/kafka/
 
-## Core
-The core of the library represented by several interfaces, allowing us to use messaging system in the same ways.
 
-### Record
-`Record` is a base structure, which represent every unit located in message broker. It can be serialized/deserialized to/from string in default way (preferred) or using custom parsers.
 
-#### Default record representation
-Preferred way to represent all records in message broker is - `topic|[key|]message[|time]`, where tokens in `[]` are optional.
+## Installation
 
-#### Time
-Field `time` in the submitted record indicates the time the record was created.
+You can add a module to your Bazel project using Bzlmod dependency system. In order to do this, add the following line in your MODULE.
+bazel file:
 
-### Client
-The `Client` API allows applications to configure, connect, send and consume messages from message broker. There is only two things you must to do once using `Client` API directy - configure and connect. Sending and consuming should be implemented using `Producer` and `Consumer` APIs respectively.
+``` python
+bazel_dep(name = "msg", version = "1.0.0", repo_name = "msg")
+```
 
-### Producer
-The `Producer` API allows applications to send records to message broker using corresponding `Client`.
+You will then able to access the module using the specified repository name. For example, you can access an MQTT submodule by specifying the following dependency:
 
-### Consumer
-The `Consumer` API allows applications to consume records from message broker in preconfigured way using corresponding `Client`.
+```python
+deps = ["@msg//msg/mqtt"]
+```
+
+
+## Targets
+
+Here is the complete list of available targets with a brief description:
+
+- `@msg//msg` - Library core, including API interfaces and clients.
+- `@msg//msg/vcas` - VCAS implementation.
+- `@msg//msg/mqtt` - MQTT implementation.
+- `@msg//msg/test:vcas-parser-test` - Tests for default VCAS parser.
+- `@msg//msg/test:default-parser-test` - Tests for default parser (MQTT).
+- `@msg//msg/test:mqtt-consumer-test-manual` - Manual test for MQTT implementation. See {projectFolder}/msg/test/mqtt-consumer-test-manual.cc
+
+
+
+## Usage
+
+In order to start messaging you need to instantiate and configure `IClients` for each implementation you want to use and pass it to `Producers` and `Consumers`. For example:
+
+``` c++
+#include <QtCore/QCoreApplication>
+
+#include <msg/mqtt/mqtt-client.h>
+#include <msg/consumer.h>
+#include <msg/producer.h>
+
+using namespace budlab::msg;
+
+int main(int argc, char **argv) {
+  QCoreApplication app(argc, argv);
+  IClient *client = new MqttClient();
+
+  client->Configure(Configuration("hostname", "password"));
+
+  Consumer consumer(client);
+  Producer producer(client);
+
+  return app.exec();
+}
+```
+
+## Logging
+
+Module using Google Logging C++ library (see https://github.com/google/glog) as logging system. To enable it in your project, add the folloing include:
+
+``` c++
+#include <glog/logging.h>
+```
+
+and line at the start of your `main()`:
+
+``` c++
+google::InitGoogleLogging(argv[0]);
+```
