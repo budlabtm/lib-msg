@@ -3,24 +3,26 @@
 
 #include <string>
 
-namespace budlab::lib::msg {
+namespace budlab::msg {
+
+struct ParseResult {
+  std::string topic;
+  std::string payload;
+};
 
 struct Record {
   std::string topic;
   std::string key;
   std::string message;
-  unsigned time;
+  unsigned long time;
 
   Record(const std::string &topic_, const std::string &message_,
-         const unsigned time_ = 0);
+         const unsigned long time_ = 0);
 
   Record(const std::string &topic_, const std::string &key_,
-         const std::string &message_, const unsigned time_ = 0);
-
-  std::string ToString();
-  static Record FromString(const std::string &str);
+         const std::string &message_, const unsigned long time_ = 0);
 };
 
-}  // namespace budlab::lib::msg
+}  // namespace budlab::msg
 
 #endif  // LIB_MSG_RECORD_H
