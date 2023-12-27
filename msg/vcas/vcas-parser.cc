@@ -4,9 +4,7 @@
 #include <unordered_map>
 
 using namespace budlab::msg;
-using std::runtime_error;
-using std::string;
-using std::unordered_map;
+using namespace std;
 
 Record VcasParser::FromString(const string &srecord) {
   unordered_map<string, string> tokens = map(srecord, '|', ':');

@@ -4,25 +4,26 @@
 #include <string>
 
 using namespace budlab::msg;
+using namespace std;
 
 static void validate(Record *record) {
   if (record->topic.empty() || record->message.empty())
-    throw std::runtime_error("Topic and Message must to be non-empty.");
+    throw runtime_error("Topic and Message must to be non-empty.");
 
-  if (record->topic.find('|') != std::string::npos ||
-      record->message.find('|') != std::string::npos ||
-      record->key.find('|') != std::string::npos)
-    throw std::runtime_error("Tokens must not contains '|'.");
+  if (record->topic.find('|') != string::npos ||
+      record->message.find('|') != string::npos ||
+      record->key.find('|') != string::npos)
+    throw runtime_error("Tokens must not contain '|'.");
 }
 
-Record::Record(const std::string &topic_, const std::string &message_,
+Record::Record(const string &topic_, const string &message_,
                const unsigned long time_)
     : topic(topic_), message(message_), time(time_) {
   validate(this);
 }
 
-Record::Record(const std::string &topic_, const std::string &key_,
-               const std::string &message_, const unsigned long time_)
+Record::Record(const string &topic_, const string &key_, const string &message_,
+               const unsigned long time_)
     : topic(topic_), key(key_), message(message_), time(time_) {
   validate(this);
 }

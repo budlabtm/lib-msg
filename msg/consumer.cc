@@ -1,6 +1,7 @@
 #include "msg/consumer.h"
 
 using namespace budlab::msg;
+using namespace std;
 
 Consumer::Consumer(IClient *client) {
   client_.reset(client);
@@ -9,14 +10,14 @@ Consumer::Consumer(IClient *client) {
           this, SLOT(OnConsumed(Record)));
 }
 
-void Consumer::Subscribe(const std::string &topic) { Subscribe(topic, ""); }
+void Consumer::Subscribe(const string &topic) { Subscribe(topic, ""); }
 
-void Consumer::Subscribe(const std::string &topic, const std::string &key) {
+void Consumer::Subscribe(const string &topic, const string &key) {
   if (subscribed_.count(topic) == 0) client_->Subscribe(topic);
   subscribed_.insert_or_assign(topic, key);
 }
 
-void Consumer::Unsubscribe(const std::string &topic) {
+void Consumer::Unsubscribe(const string &topic) {
   if (subscribed_.count(topic) != 0) {
     subscribed_.extract(topic);
     client_->Unsubscribe(topic);

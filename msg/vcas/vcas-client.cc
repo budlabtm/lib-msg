@@ -5,8 +5,9 @@
 #include <iostream>
 
 using namespace budlab::msg;
+using namespace std;
 
-void VcasClient::Send(const std::string &record) {
+void VcasClient::Send(const string &record) {
   QTextStream out(socket_);
   out << QString::fromStdString(record);
 }
@@ -42,13 +43,13 @@ void VcasClient::Send(const Record &record) {
   Send(parser_->ToString(record));
 }
 
-void VcasClient::Subscribe(const std::string &topic) {
+void VcasClient::Subscribe(const string &topic) {
   subscribed_.insert(topic);
 
   if (IsConnected()) Send("name:" + topic + "|method:subscr");
 }
 
-void VcasClient::Unsubscribe(const std::string &topic) {
+void VcasClient::Unsubscribe(const string &topic) {
   subscribed_.extract(topic);
 
   if (subscribed_.count(topic) == 0 && IsConnected())
@@ -59,10 +60,10 @@ bool VcasClient::IsConnected() { return socket_->isValid(); }
 
 void VcasClient::OnReadyRead() {
   while (socket_->canReadLine()) {
-    std::string line = tr(socket_->readLine()).remove('\n').toStdString();
+    string line = tr(socket_->readLine()).remove('\n').toStdString();
     try {
       emit Consumed(parser_->FromString(line));
-    } catch (const std::runtime_error &err) {
+    } catch (const runtime_error &err) {
       LOG(ERROR) << "LIB_MSG_VCAS_CLIENT: " << err.what();
     }
   }
@@ -70,16 +71,12 @@ void VcasClient::OnReadyRead() {
 
 void VcasClient::OnConnected() {
   timer_->stop();
-
   for (auto &t : subscribed_) Send("name:" + t + "|method:subscr\n");
-
-  std::cout << "Connected" << std::endl;
   emit Connected();
 }
 
 void VcasClient::OnDisconnected() {
   timer_->start();
-  std::cout << "Disconnected" << std::endl;
   emit Disconnected();
 }
 
