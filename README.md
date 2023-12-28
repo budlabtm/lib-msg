@@ -7,10 +7,15 @@ The module serves to communicate with several brokers and transmits messages in 
 
 ## Installation
 
-You can add a module to your Bazel project using Bzlmod dependency system. In order to do this, add the following line in your MODULE.bazel file:
+You can add a module to your Bazel project using WORKSPACE dependency system. In order to do this, add the following line in your WORKSPACE file:
 
 ``` python
-bazel_dep(name = "msg", version = "1.0.0", repo_name = "msg")
+http_archive(
+    name = "msg",
+    sha256 = "5537fbd138ae3c02d7a4ce1a6032533c4f9248699a8cb7e9640d6f15999e019d",
+    strip_prefix = "lib-msg-1.0.0-linux",
+    url = "https://github.com/budlabtm/lib-msg/archive/refs/tags/v1.0.0-linux.tar.gz",
+)
 ```
 
 You will then able to access the module using the specified repository name. For example, you can access an MQTT submodule by specifying the following dependency:
@@ -19,6 +24,16 @@ You will then able to access the module using the specified repository name. For
 deps = ["@msg//msg/mqtt"]
 ```
 
+As an addition, you must to add `rules_qt` dependency before `msg` declaration:
+
+``` python
+http_archive(
+    name = "rules_qt",
+    sha256 = "bd8253247c0e45e6a180c87083f20910159e36cd67f6b11d5d3d865a61ea52cd",
+    strip_prefix = "rules_qt6-0.0.3",
+    url = "https://github.com/Vertexwahn/rules_qt6/releases/download/v0.0.3/rules_qt6-v0.0.3.tar.gz",
+)
+```
 
 ## Targets
 
