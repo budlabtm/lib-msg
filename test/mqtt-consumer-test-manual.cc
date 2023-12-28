@@ -3,7 +3,7 @@
 
 #include "msg/consumer.h"
 #include "msg/mqtt/mqtt-client.h"
-#include "msg/test/message-handler.h"
+#include "test/message-handler.h"
 
 using namespace budlab::msg;
 

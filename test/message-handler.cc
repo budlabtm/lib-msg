@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "msg/test/message-handler.h"
+#include "test/message-handler.h"
 
 using namespace budlab::msg;
 using namespace std;
