@@ -27,9 +27,9 @@ Here is the complete list of available targets with a brief description:
 - `@msg//msg` - Library core, including API interfaces and clients.
 - `@msg//msg/vcas` - VCAS implementation.
 - `@msg//msg/mqtt` - MQTT implementation.
-- `@msg//msg/test:vcas-parser-test` - Tests for default VCAS parser.
-- `@msg//msg/test:default-parser-test` - Tests for default parser (MQTT).
-- `@msg//msg/test:mqtt-consumer-test-manual` - Manual test for MQTT implementation. See {projectFolder}/msg/test/mqtt-consumer-test-manual.cc
+- `@msg//test:vcas-parser-test` - Tests for default VCAS parser.
+- `@msg//test:default-parser-test` - Tests for default parser (MQTT).
+- `@msg//test:mqtt-consumer-test-manual` - Manual test for MQTT implementation. See {projectFolder}/msg/test/mqtt-consumer-test-manual.cc
 
 
 
