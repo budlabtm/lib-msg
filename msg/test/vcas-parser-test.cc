@@ -1,6 +1,6 @@
-#include "msg/vcas/vcas-parser.h"
-
 #include <gtest/gtest.h>
+
+#include "msg/vcas/vcas-parser.h"
 
 using namespace budlab::msg;
 

@@ -34,3 +34,12 @@ cc_test(
         "//msg/mqtt",
     ],
 )
+
+cc_test(
+    name = "vcas-consumer-test-manual",
+    srcs = ["vcas-consumer-test-manual.cc"],
+    deps = [
+        ":message-handler",
+        "//msg/vcas",
+    ],
+)

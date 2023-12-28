@@ -1,9 +1,8 @@
 #ifndef LIB_MSG_MQTT_CLIENT_H
 #define LIB_MSG_MQTT_CLIENT_H
 
-#include <mqtt/async_client.h>
-
 #include <QtCore/QObject>
+#include <mqtt/async_client.h>
 
 #include "msg/client.h"
 

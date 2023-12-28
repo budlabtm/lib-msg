@@ -26,7 +26,7 @@ void Consumer::Unsubscribe(const string &topic) {
 
 void Consumer::OnConsumed(Record record) {
   if (subscribed_.count(record.topic) != 0 &&
-      (subscribed_.at(record.topic).empty() ||
-       subscribed_.at(record.topic) == record.key))
+      (subscribed_[record.topic].empty() ||
+       subscribed_[record.topic] == record.key))
     emit Consumed(record);
 }

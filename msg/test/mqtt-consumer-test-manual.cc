@@ -1,5 +1,4 @@
 #include <glog/logging.h>
-
 #include <QtCore/QCoreApplication>
 
 #include "msg/consumer.h"
@@ -9,6 +8,7 @@
 using namespace budlab::msg;
 
 int main(int argc, char **argv) {
+  FLAGS_logtostderr = 1;
   google::InitGoogleLogging(argv[0]);
 
   QCoreApplication app(argc, argv);

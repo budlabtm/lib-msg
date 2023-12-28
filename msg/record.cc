@@ -1,7 +1,7 @@
-#include "msg/record.h"
-
 #include <stdexcept>
 #include <string>
+
+#include "msg/record.h"
 
 using namespace budlab::msg;
 using namespace std;

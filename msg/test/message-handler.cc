@@ -1,10 +1,9 @@
-#include "msg/test/message-handler.h"
-
 #include <iostream>
 
+#include "msg/test/message-handler.h"
+
 using namespace budlab::msg;
-using std::cout;
-using std::endl;
+using namespace std;
 
 MessageHandler::MessageHandler(Consumer *consumer) : consumer_(consumer) {
   connect(consumer_, SIGNAL(Consumed(Record)), this, SLOT(OnConsumed(Record)));

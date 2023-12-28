@@ -1,8 +1,6 @@
-#include "mqtt-client.h"
-
 #include <glog/logging.h>
 
-#include <iostream>
+#include "mqtt-client.h"
 
 using namespace budlab::msg;
 using namespace std;
@@ -48,7 +46,7 @@ void MqttClient::connected(const string &cause) {
 }
 
 void MqttClient::connection_lost(const string &cause) {
-  LOG(INFO) << "LIB_MSG_MQTT_CLIENT: Disconnected, " + cause;
+  LOG(WARNING) << "LIB_MSG_MQTT_CLIENT: Disconnected, " + cause;
   emit Disconnected();
 }
 

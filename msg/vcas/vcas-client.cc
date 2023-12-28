@@ -1,9 +1,6 @@
-#include "msg/vcas/vcas-client.h"
-
 #include <glog/logging.h>
 
-#include <iostream>
-
+#include "msg/vcas/vcas-client.h"
 #include "msg/vcas/vcas-parser.h"
 
 using namespace budlab::msg;
@@ -81,7 +78,7 @@ void VcasClient::OnConnected() {
 }
 
 void VcasClient::OnDisconnected() {
-  LOG(INFO) << "LIB_MSG_VCAS_CLIENT: Disconnected";
+  LOG(WARNING) << "LIB_MSG_VCAS_CLIENT: Disconnected";
   timer_->start();
   emit Disconnected();
 }

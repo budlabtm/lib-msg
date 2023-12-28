@@ -11,8 +11,8 @@ Record VcasParser::FromString(const string &srecord) {
 
   if (tokens.size() < 3 || !tokens.count("name") || !tokens.count("time") ||
       !tokens.count("val"))
-    throw std::runtime_error("Format error - \"" + kFormat +
-                             "\" expected, but \"" + srecord + "\" were given");
+    throw runtime_error("Format error - \"" + kFormat + "\" expected, but \"" +
+                        srecord + "\" were given");
 
   return Record(
       tokens["name"], tokens["val"],
