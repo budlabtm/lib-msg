@@ -12,7 +12,7 @@ You can add a module to your Bazel project using WORKSPACE dependency system. In
 ``` python
 http_archive(
     name = "msg",
-    sha256 = "5537fbd138ae3c02d7a4ce1a6032533c4f9248699a8cb7e9640d6f15999e019d",
+    sha256 = "4efcfd30049b71d6d7c7dca45320b94300530e6cd926abb9ab57d8af0bdb2639",
     strip_prefix = "lib-msg-1.0.0-linux",
     url = "https://github.com/budlabtm/lib-msg/archive/refs/tags/v1.0.0-linux.tar.gz",
 )
