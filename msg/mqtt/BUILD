@@ -9,6 +9,6 @@ qt_cc_library(
     deps = [
         "//msg",
         "@glog",
-        "@mqtt//:paho-mqtt-cpp-linux",
+        "@paho-mqtt-cpp//:paho-mqttpp3",
     ],
 )
